@@ -1,6 +1,7 @@
 ---
 import config from "../data/config";
-import { Download } from "lucide-solid";
+// TODO: Brand icons being removed from lucide-solid :( Replace later!
+import { Download, GithubIcon } from "lucide-solid";
 
 const navItems = [
   { name: "projects", path: "/projects", icon: "" },
@@ -10,9 +11,9 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-2">
   <div class="bg-terminal-bg/80 backdrop-blur-xl border border-terminal-border rounded-2xl shadow-terminal-glow-lg overflow-hidden">
-    <div class="flex items-center gap-8 px-6 py-4">
+    <div class="flex items-center gap-4 px-6 py-4">
       <a href="/" class="flex items-center gap-2 group">
         <span class="text-terminal-fg text-lg font-bold group-hover:text-terminal-blue transition-colors">
           <span class="text-terminal-blue">❯</span>
@@ -20,7 +21,7 @@ const currentPath = Astro.url.pathname;
         </span>
       </a>
 
-      <div class="hidden md:flex gap-2 items-center flex-1">
+      <div class="hidden md:flex items-center flex-1">
         {navItems.map(item => {
           const isActive = currentPath === item.path || (item.path !== "/" && currentPath.startsWith(item.path));
           return (
@@ -45,6 +46,16 @@ const currentPath = Astro.url.pathname;
           );
         })}
       </div>
+
+      {config.social.github && (
+        <a 
+        href=`${config.social.github}`
+        class="hidden md:flex px-2 py-2 bg-terminal-cyan/10 border border-terminal-cyan/50 text-terminal-cyan rounded-lg hover:bg-terminal-cyan hover:text-terminal-bg transition-all font-medium text-sm items-center"
+      > 
+        <GithubIcon size={14} />
+      </a>
+      )}
+
       
       <a 
         href="/resume.pdf"
