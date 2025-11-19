@@ -48,19 +48,31 @@ const featuredPosts = await getFeaturedPosts(3);
       </div>
     </div>
 
+    <!-- Separator -->
+    <div class="w-full my-16">
+      <div class="w-full border-t border-base-content/20"></div>
+    </div>
+
     {featuredProjects.length > 0 && (
       <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 uppercase text-secondary">
+        <h2 class="text-3xl font-bold mb-6 uppercase text-secondary relative inline-block">
           Featured Projects
+          <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-primary to-accent rounded-full"></div>
         </h2>
         <ProjectCard client:load projects={featuredProjects} />
       </section>
     )}
 
+    <!-- Separator -->
+    <div class="w-full my-16">
+      <div class="w-full border-t border-base-content/20"></div>
+    </div>
+
     {featuredPosts.length > 0 && (
       <section>
-        <h2 class="text-3xl font-bold mb-6 uppercase text-accent">
+        <h2 class="text-3xl font-bold mb-6 uppercase text-accent relative inline-block">
           Recent Posts
+          <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-accent via-secondary to-primary rounded-full"></div>
         </h2>
         <BlogCard client:load posts={featuredPosts} />
       </section>

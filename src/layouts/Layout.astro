@@ -47,11 +47,15 @@ const imageURL = new URL(image, Astro.site);
     <Navigation />
     
     <slot />
+    
+    <div class="mt-24 mb-0 w-full">
+      <div class="w-full border-t-2 border-primary"></div>
+    </div>
 
-    <footer class="footer footer-center p-12 bg-gradient-to-t from-base-300 to-base-200 border-t-2 border-primary/30 text-base-content mt-24">
+    <footer class="footer footer-center p-12 bg-gradient-to-t from-base-300 to-base-200 text-base-content">
       <div>
         <p class="flex items-center justify-center gap-2 text-lg">
-          made with &lt;3 by em
+          made with &lt;3 by <span class="gradient-text font-bold">em</span>
         </p>
       </div>
     </footer>
