@@ -51,7 +51,7 @@ const currentPath = Astro.url.pathname;
         <a 
         href=`${config.social.github}`
         class="hidden md:flex px-2 py-2 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium text-sm items-center"
-      > 
+        > 
         <GithubIcon size={14} />
       </a>
       )}
@@ -101,15 +101,17 @@ const currentPath = Astro.url.pathname;
           class="flex items-center justify-center gap-2 px-4 py-3 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium"
         >
           <Download size={16} />
-          <span>Download Resume</span>
+          <span>RESUME</span>
         </a>
+        {config.social.github && (
         <a 
-          href="/contact"
+          href=`${config.social.github}`
           class="flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 border border-primary/50 text-primary rounded-lg hover:bg-primary hover:text-base-300 transition-all font-medium"
-        >
-          <span>Get in Touch</span>
-          <span class="text-accent">→</span>
+        > 
+          <GithubIcon size={14} />
+          <span>GITHUB</span>
         </a>
+        )}
       </div>
     </div>
   </div>
