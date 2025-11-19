@@ -12,12 +12,12 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-2">
-  <div class="bg-terminal-bg/80 backdrop-blur-xl border border-terminal-border rounded-2xl shadow-terminal-glow-lg overflow-hidden">
+  <div class="bg-base-300/80 backdrop-blur-xl border border-base-content/20 rounded-2xl shadow-terminal-glow-lg overflow-hidden">
     <div class="flex items-center gap-4 px-6 py-4">
       <a href="/" class="flex items-center gap-2 group">
-        <span class="text-terminal-fg text-lg font-bold group-hover:text-terminal-blue transition-colors">
-          <span class="text-terminal-blue">❯</span>
-          <span class="animate-blink text-terminal-cyan uppercase">{config.name}</span>
+        <span class="text-base-content text-lg font-bold group-hover:text-primary transition-colors">
+          <span class="text-primary">❯</span>
+          <span class="animate-blink text-accent uppercase">{config.name}</span>
         </span>
       </a>
 
@@ -30,17 +30,17 @@ const currentPath = Astro.url.pathname;
               class={`
                 group relative px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200
                 ${isActive 
-                  ? "bg-terminal-blue/10 text-terminal-blue border border-terminal-blue/30" 
-                  : "text-terminal-fg-dark hover:text-terminal-fg hover:bg-terminal-bg-dark/50"
+                  ? "bg-primary/10 text-primary border border-primary/30" 
+                  : "text-base-content/70 hover:text-base-content hover:bg-base-200/50"
                 }
               `}
             >
               <span class="flex items-left gap-2">
-                <span class={isActive ? "text-terminal-cyan" : "text-terminal-comment"}>{item.icon}</span>
+                <span class={isActive ? "text-accent" : "text-base-content/50"}>{item.icon}</span>
                 <span>{item.name}</span>
               </span>
               {isActive && (
-                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-terminal-blue via-terminal-cyan to-terminal-magenta"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary"></div>
               )}
             </a>
           );
@@ -50,7 +50,7 @@ const currentPath = Astro.url.pathname;
       {config.social.github && (
         <a 
         href=`${config.social.github}`
-        class="hidden md:flex px-2 py-2 bg-terminal-cyan/10 border border-terminal-cyan/50 text-terminal-cyan rounded-lg hover:bg-terminal-cyan hover:text-terminal-bg transition-all font-medium text-sm items-center"
+        class="hidden md:flex px-2 py-2 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium text-sm items-center"
       > 
         <GithubIcon size={14} />
       </a>
@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname;
       
       <a 
         href="/resume.pdf"
-        class="hidden md:flex px-5 py-2 bg-terminal-cyan/10 border border-terminal-cyan/50 text-terminal-cyan rounded-lg hover:bg-terminal-cyan hover:text-terminal-bg transition-all font-medium text-sm items-center gap-2"
+        class="hidden md:flex px-5 py-2 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium text-sm items-center gap-2"
       >
         <Download size={14} />
         <span>RESUME</span>
@@ -67,7 +67,7 @@ const currentPath = Astro.url.pathname;
 
       <button 
         id="mobile-menu-btn"
-        class="md:hidden text-terminal-fg hover:text-terminal-blue transition-colors p-2 ml-auto"
+        class="md:hidden text-base-content hover:text-primary transition-colors p-2 ml-auto"
         aria-label="Toggle menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,7 +76,7 @@ const currentPath = Astro.url.pathname;
       </button>
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden border-t border-terminal-border bg-terminal-bg-dark/95 backdrop-blur-md">
+    <div id="mobile-menu" class="hidden md:hidden border-t border-base-content/20 bg-base-200/95 backdrop-blur-md">
       <div class="px-4 py-4 space-y-2">
         {navItems.map(item => {
           const isActive = currentPath === item.path || (item.path !== "/" && currentPath.startsWith(item.path));
@@ -86,29 +86,29 @@ const currentPath = Astro.url.pathname;
               class={`
                 flex items-center gap-3 px-4 py-3 rounded-lg transition-all
                 ${isActive 
-                  ? "bg-terminal-blue/10 text-terminal-blue border border-terminal-blue/30" 
-                  : "text-terminal-fg-dark hover:text-terminal-fg hover:bg-terminal-bg-dark/50"
+                  ? "bg-primary/10 text-primary border border-primary/30" 
+                  : "text-base-content/70 hover:text-base-content hover:bg-base-200/50"
                 }
               `}
             >
-              <span class={isActive ? "text-terminal-cyan" : "text-terminal-comment"}>{item.icon}</span>
+              <span class={isActive ? "text-accent" : "text-base-content/50"}>{item.icon}</span>
               <span>{item.name}</span>
             </a>
           );
         })}
         <a 
           href="/resume.pdf"
-          class="flex items-center justify-center gap-2 px-4 py-3 bg-terminal-cyan/10 border border-terminal-cyan/50 text-terminal-cyan rounded-lg hover:bg-terminal-cyan hover:text-terminal-bg transition-all font-medium"
+          class="flex items-center justify-center gap-2 px-4 py-3 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium"
         >
           <Download size={16} />
           <span>Download Resume</span>
         </a>
         <a 
           href="/contact"
-          class="flex items-center justify-center gap-2 px-4 py-3 bg-terminal-blue/10 border border-terminal-blue/50 text-terminal-blue rounded-lg hover:bg-terminal-blue hover:text-terminal-bg transition-all font-medium"
+          class="flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 border border-primary/50 text-primary rounded-lg hover:bg-primary hover:text-base-300 transition-all font-medium"
         >
           <span>Get in Touch</span>
-          <span class="text-terminal-cyan">→</span>
+          <span class="text-accent">→</span>
         </a>
       </div>
     </div>

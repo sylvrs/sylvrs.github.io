@@ -25,6 +25,6 @@ export const projects: Project[] = [
   },
 ];
 
-export const getFeaturedProjects = () => projects.filter(p => p.featured);
+export const getFeaturedProjects = (limit: number = 3) => projects.filter(p => p.featured).slice(0, limit);
 export const getProjectsByCategory = (category: string) => projects.filter(p => p.category === category);
 export const getProjectsByYear = (year: string) => projects.filter(p => p.year === year);
