@@ -40,8 +40,8 @@ export default function BlogCard(props: BlogCardProps) {
               class={`
                 px-6 py-3 rounded-xl font-semibold text-sm uppercase tracking-wider transition-all
                 ${selectedFilter() === category
-                  ? "bg-gradient-to-r from-terminal-green to-terminal-cyan text-retro-darker shadow-neon-green scale-105"
-                  : "bg-retro-dark border-2 border-terminal-green text-terminal-green hover:border-terminal-amber hover:text-terminal-amber hover:shadow-neon-green"
+                  ? "bg-primary text-base-300 scale-105"
+                  : "bg-base-300 border-2 border-base-content/20 text-base-content hover:border-primary hover:text-primary"
                 }
               `}
             >
@@ -58,11 +58,11 @@ export default function BlogCard(props: BlogCardProps) {
             <a 
               href={`/blog/${post.slug}`}
               class={`
-                group relative bg-gradient-to-br from-retro-dark to-retro-accent border-2 
-                transition-all duration-300 cursor-pointer rounded-xl overflow-hidden block
+                group relative bg-gradient-to-br from-base-200 to-base-300 border-2 
+                transition-all duration-300 cursor-pointer rounded-xl overflow-hidden block card-hover-effect
                 ${hoveredId() === post.id 
-                  ? "border-terminal-amber shadow-neon-amber -translate-y-3 scale-105" 
-                  : "border-terminal-green shadow-neon-green"
+                  ? "border-accent shadow-lg shadow-accent/50 -translate-y-3" 
+                  : "border-primary/30 shadow-md"
                 }
               `}
               onMouseEnter={() => setHoveredId(post.id)}
@@ -76,7 +76,7 @@ export default function BlogCard(props: BlogCardProps) {
               {/* Featured Badge */}
               {post.featured && (
                 <div class="absolute top-4 right-4 z-20">
-                  <span class="px-3 py-1 bg-gradient-to-r from-terminal-amber to-terminal-pink text-retro-darker text-xs font-bold rounded-full shadow-neon-amber">
+                  <span class="px-3 py-1 bg-gradient-to-r from-accent to-secondary text-base-300 text-xs font-bold rounded-full shadow-lg shadow-accent/50">
                     FEATURED
                   </span>
                 </div>
@@ -84,7 +84,7 @@ export default function BlogCard(props: BlogCardProps) {
 
               {/* Category */}
               <div class="absolute top-4 left-4 z-20">
-                <span class="px-3 py-1 bg-terminal-cyan/10 border border-terminal-cyan text-terminal-cyan text-xs font-semibold rounded-full backdrop-blur-sm">
+                <span class="px-3 py-1 bg-accent/10 border border-accent text-accent text-xs font-semibold rounded-full backdrop-blur-sm">
                   {post.category}
                 </span>
               </div>
@@ -92,7 +92,7 @@ export default function BlogCard(props: BlogCardProps) {
               {/* Gradient Overlay on Hover */}
               <div 
                 class={`
-                  absolute inset-0 bg-gradient-to-br from-terminal-green/10 via-terminal-cyan/10 to-terminal-amber/10 
+                  absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 
                   transition-opacity duration-300 pointer-events-none
                   ${hoveredId() === post.id ? "opacity-100" : "opacity-0"}
                 `}
@@ -100,11 +100,11 @@ export default function BlogCard(props: BlogCardProps) {
 
               <div class="relative p-8 pt-16 z-10 flex flex-col h-full">
                 {/* Date and Read Time */}
-                <div class="flex items-center gap-3 mb-4 text-xs text-terminal-green/70">
+                <div class="flex items-center gap-3 mb-4 text-xs text-base-content/70">
                   <span class="flex items-center gap-1">
                     {formatDate(post.date)}
                   </span>
-                  <span class="text-terminal-amber">•</span>
+                  <span class="text-accent">•</span>
                   <span class="flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"></circle>
@@ -114,11 +114,11 @@ export default function BlogCard(props: BlogCardProps) {
                   </span>
                 </div>
 
-                <h2 class="text-terminal-green text-2xl font-bold mb-4 flex items-start gap-2 group-hover:text-terminal-cyan transition-colors leading-tight">
+                <h2 class="text-base-content text-2xl font-bold mb-4 flex items-start gap-2 group-hover:text-accent transition-colors leading-tight">
                   <span>{post.title}</span>
                 </h2>
                 
-                <p class="text-terminal-green/80 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
+                <p class="text-base-content/80 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
                   {post.excerpt}
                 </p>
                 
@@ -126,13 +126,13 @@ export default function BlogCard(props: BlogCardProps) {
                 <div class="flex flex-wrap gap-2 mb-6">
                   <For each={post.tags.slice(0, 4)}>
                     {(tag) => (
-                      <span class="px-3 py-1 text-xs font-semibold bg-terminal-cyan/10 border border-terminal-cyan text-terminal-cyan rounded-full hover:bg-terminal-cyan hover:text-retro-darker transition-all cursor-default">
+                      <span class="px-3 py-1 text-xs font-semibold bg-primary/10 border border-primary text-primary rounded-full hover:bg-primary hover:text-base-300 transition-all cursor-default">
                         {tag}
                       </span>
                     )}
                   </For>
                   {post.tags.length > 4 && (
-                    <span class="px-3 py-1 text-xs font-semibold bg-terminal-pink/10 border border-terminal-pink text-terminal-pink rounded-full">
+                    <span class="px-3 py-1 text-xs font-semibold bg-secondary/10 border border-secondary text-secondary rounded-full">
                       +{post.tags.length - 4}
                     </span>
                   )}
@@ -142,7 +142,7 @@ export default function BlogCard(props: BlogCardProps) {
               {/* Bottom Accent Line */}
               <div 
                 class={`
-                  absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-terminal-green via-terminal-cyan to-terminal-amber
+                  absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary
                   transition-all duration-300
                   ${hoveredId() === post.id ? "opacity-100" : "opacity-0"}
                 `}
@@ -154,8 +154,8 @@ export default function BlogCard(props: BlogCardProps) {
 
       {filteredPosts().length === 0 && (
         <div class="text-center py-20">
-          <p class="text-terminal-amber text-2xl font-bold mb-4">No posts found in this category</p>
-          <p class="text-terminal-green/70">Try selecting a different filter</p>
+          <p class="text-accent text-2xl font-bold mb-4">No posts found in this category</p>
+          <p class="text-base-content/70">Try selecting a different filter</p>
         </div>
       )}
     </div>
