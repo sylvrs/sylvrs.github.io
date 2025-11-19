@@ -1,0 +1,120 @@
+---
+import config from "../data/config";
+import { Download } from "lucide-solid";
+
+const navItems = [
+  { name: "projects", path: "/projects", icon: "" },
+  { name: "blog", path: "/blog", icon: "" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+  <div class="bg-terminal-bg/80 backdrop-blur-xl border border-terminal-border rounded-2xl shadow-terminal-glow-lg overflow-hidden">
+    <div class="flex items-center gap-8 px-6 py-4">
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="text-terminal-fg text-lg font-bold group-hover:text-terminal-blue transition-colors">
+          <span class="text-terminal-blue">❯</span>
+          <span class="animate-blink text-terminal-cyan uppercase">{config.name}</span>
+        </span>
+      </a>
+
+      <div class="hidden md:flex gap-2 items-center flex-1">
+        {navItems.map(item => {
+          const isActive = currentPath === item.path || (item.path !== "/" && currentPath.startsWith(item.path));
+          return (
+            <a 
+              href={item.path}
+              class={`
+                group relative px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200
+                ${isActive 
+                  ? "bg-terminal-blue/10 text-terminal-blue border border-terminal-blue/30" 
+                  : "text-terminal-fg-dark hover:text-terminal-fg hover:bg-terminal-bg-dark/50"
+                }
+              `}
+            >
+              <span class="flex items-left gap-2">
+                <span class={isActive ? "text-terminal-cyan" : "text-terminal-comment"}>{item.icon}</span>
+                <span>{item.name}</span>
+              </span>
+              {isActive && (
+                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-terminal-blue via-terminal-cyan to-terminal-magenta"></div>
+              )}
+            </a>
+          );
+        })}
+      </div>
+      
+      <a 
+        href="/resume.pdf"
+        class="hidden md:flex px-5 py-2 bg-terminal-cyan/10 border border-terminal-cyan/50 text-terminal-cyan rounded-lg hover:bg-terminal-cyan hover:text-terminal-bg transition-all font-medium text-sm items-center gap-2"
+      >
+        <Download size={14} />
+        <span>RESUME</span>
+      </a>
+
+      <button 
+        id="mobile-menu-btn"
+        class="md:hidden text-terminal-fg hover:text-terminal-blue transition-colors p-2 ml-auto"
+        aria-label="Toggle menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-terminal-border bg-terminal-bg-dark/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-2">
+        {navItems.map(item => {
+          const isActive = currentPath === item.path || (item.path !== "/" && currentPath.startsWith(item.path));
+          return (
+            <a 
+              href={item.path}
+              class={`
+                flex items-center gap-3 px-4 py-3 rounded-lg transition-all
+                ${isActive 
+                  ? "bg-terminal-blue/10 text-terminal-blue border border-terminal-blue/30" 
+                  : "text-terminal-fg-dark hover:text-terminal-fg hover:bg-terminal-bg-dark/50"
+                }
+              `}
+            >
+              <span class={isActive ? "text-terminal-cyan" : "text-terminal-comment"}>{item.icon}</span>
+              <span>{item.name}</span>
+            </a>
+          );
+        })}
+        <a 
+          href="/resume.pdf"
+          class="flex items-center justify-center gap-2 px-4 py-3 bg-terminal-cyan/10 border border-terminal-cyan/50 text-terminal-cyan rounded-lg hover:bg-terminal-cyan hover:text-terminal-bg transition-all font-medium"
+        >
+          <Download size={16} />
+          <span>Download Resume</span>
+        </a>
+        <a 
+          href="/contact"
+          class="flex items-center justify-center gap-2 px-4 py-3 bg-terminal-blue/10 border border-terminal-blue/50 text-terminal-blue rounded-lg hover:bg-terminal-blue hover:text-terminal-bg transition-all font-medium"
+        >
+          <span>Get in Touch</span>
+          <span class="text-terminal-cyan">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  
+  mobileMenuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!mobileMenuBtn?.contains(e.target as Node) && !mobileMenu?.contains(e.target as Node)) {
+      mobileMenu?.classList.add("hidden");
+    }
+  });
+</script>

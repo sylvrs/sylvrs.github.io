@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard";
+import PageHeader from "../components/PageHeader.astro";
+import { projects } from "../data/projects";
+import config from "../data/config";
+---
+
+<Layout title={`Projects | ${config.name}`} description=""> 
+  <main class="container mx-auto px-4 pt-32 pb-12">
+    <PageHeader 
+      title="Projects"
+      description="Some of my favorite and/or most notable projects that I've worked on over the years."
+    />
+    <ProjectCard client:load projects={projects} />
+  </main>
+</Layout>

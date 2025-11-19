@@ -1,0 +1,103 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/Navigation.astro";
+import config from "../../data/config";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => data.published);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString("en-US", { 
+    year: "numeric", 
+    month: "long", 
+    day: "numeric" 
+  });
+};
+---
+
+<Layout title={`${post.data.title} | ${config.name}`} description={post.data.excerpt}> 
+  <main class="container mx-auto px-4 pt-32 pb-12">
+    <article class="max-w-4xl mx-auto">
+      <div class="mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="px-4 py-2 bg-terminal-magenta/10 border border-terminal-magenta/30 rounded-lg text-terminal-magenta text-sm font-semibold">
+            {post.data.category}
+          </span>
+          <span class="text-terminal-comment text-sm">{formatDate(post.data.date)}</span>
+        </div>
+
+        <h1 class="text-5xl font-bold text-terminal-fg mb-6 leading-tight">
+          {post.data.title}
+        </h1>
+
+        <p class="text-xl text-terminal-fg-dark leading-relaxed mb-8">
+          {post.data.excerpt}
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag: string) => (
+            <span class="px-3 py-1 bg-terminal-blue/10 border border-terminal-blue/30 text-terminal-blue text-sm rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:text-terminal-fg
+        prose-p:text-terminal-fg-dark
+        prose-a:text-terminal-blue prose-a:no-underline hover:prose-a:text-terminal-cyan
+        prose-strong:text-terminal-fg
+        prose-code:text-terminal-cyan prose-code:bg-terminal-bg-dark prose-code:px-2 prose-code:py-1 prose-code:rounded
+        prose-pre:bg-terminal-bg-dark prose-pre:border prose-pre:border-terminal-border
+        prose-blockquote:border-l-terminal-blue prose-blockquote:text-terminal-fg-dark
+        prose-li:text-terminal-fg-dark
+      ">
+        <Content />
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-terminal-border">
+        <div class="flex items-center justify-between">
+          <a 
+            href="/blog" 
+            class="flex items-center gap-2 text-terminal-blue hover:text-terminal-cyan transition-colors"
+          >
+            <span>←</span>
+            <span>Back to all articles</span>
+          </a>          
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  article :global(pre) {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+  }
+
+  article :global(code) {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  article :global(h2) {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  article :global(h3) {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+</style>

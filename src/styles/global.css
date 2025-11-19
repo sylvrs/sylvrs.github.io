@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@plugin "daisyui/theme" {
+  name: "tokyonight";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(18% 0.04 240);
+  --color-base-200: oklch(15% 0.03 240);
+  --color-base-300: oklch(21% 0.04 240);
+  --color-base-content: oklch(88% 0.05 250);
+
+  --color-primary: oklch(72% 0.18 250);
+  --color-primary-content: oklch(18% 0.04 240);
+
+  --color-secondary: oklch(78% 0.20 300);
+  --color-secondary-content: oklch(18% 0.04 240);
+
+  --color-accent: oklch(82% 0.18 200);
+  --color-accent-content: oklch(18% 0.04 240);
+
+  --color-neutral: oklch(23% 0.04 240);
+  --color-neutral-content: oklch(88% 0.05 250);
+
+  --color-info: oklch(82% 0.18 200);
+  --color-info-content: oklch(18% 0.04 240);
+
+  --color-success: oklch(78% 0.20 140);
+  --color-success-content: oklch(18% 0.04 240);
+
+  --color-warning: oklch(78% 0.18 80);
+  --color-warning-content: oklch(18% 0.04 240);
+
+  --color-error: oklch(78% 0.22 20);
+  --color-error-content: oklch(18% 0.04 240);
+
+  --radius-selector: 0.75rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+
+  --depth: 1;
+  --noise: 0;
+}
+
+@layer base {
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: local("JetBrains Mono"), local("Fira Code"), local("Consolas"), local("Monaco"), local("Courier New"), monospace;
+    font-display: swap;
+  }
+  
+  body {
+    font-family: "JetBrains Mono", "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .card-hover-effect {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover-effect:hover {
+    transform: translateY(-4px);
+  }
+
+  .terminal-card {
+    background: linear-gradient(135deg, rgba(36, 40, 59, 0.7) 0%, rgba(27, 31, 48, 0.7) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(122, 162, 247, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .terminal-card:hover {
+    background: linear-gradient(135deg, rgba(36, 40, 59, 0.9) 0%, rgba(27, 31, 48, 0.9) 100%);
+    border-color: oklch(var(--p));
+    box-shadow: 0 8px 16px rgba(122, 162, 247, 0.15), 0 2px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  ::selection {
+    background: #364a82;
+    color: oklch(var(--bc));
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

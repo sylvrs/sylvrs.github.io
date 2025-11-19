@@ -1,0 +1,41 @@
+---
+import Navigation from "../components/Navigation.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="tokyonight">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-base-100 text-base-content font-mono antialiased relative overflow-x-hidden">
+    <div class="pointer-events-none fixed inset-0 z-50 opacity-[0.02]">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary to-transparent h-1 animate-scan"></div>
+    </div>
+    
+    <div class="pointer-events-none fixed inset-0 z-40 opacity-[0.01] bg-[repeating-linear-gradient(0deg,rgba(122,162,247,0.03),rgba(122,162,247,0.03)_1px,transparent_1px,transparent_2px)]"></div>
+    <Navigation />
+    
+    <slot />
+
+    <footer class="footer footer-center p-12 bg-gradient-to-t from-base-300 to-base-200 border-t-2 border-primary/30 text-base-content mt-24">
+      <div>
+        <p class="flex items-center justify-center gap-2 text-lg">
+          made with &lt;3 by em
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
