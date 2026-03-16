@@ -20,5 +20,5 @@ const pages = defineCollection({
 
 export const collections = {
   blog,
-  pages,
+  // pages,
 };

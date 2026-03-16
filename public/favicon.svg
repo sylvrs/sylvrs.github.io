@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" fill="#050814"/>
-  <text x="50" y="70" font-family="monospace" font-size="60" fill="#00ff00" text-anchor="middle">$</text>
-</svg>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128"><defs><image  width="128" height="128" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAAAXNSR0IB2cksfwAAAANQTFRFHhwcQ7SysgAAAB9JREFUeJxjZEADjKMCowKjAqMCowKjAqMCowK0FQAALN4AgTEKlwoAAAAASUVORK5CYII="/></defs><style>.a{fill:#aeaeae}</style><use  href="#img1" x="0" y="0"/><path class="a" d="m13 42.2v-14.6h12v14.6h12v14.5h6v14.6h-6v14.6h-12v14.5h-12v-14.5h6v-14.6h12v-14.6h-12v-14.5z"/><path class="a" d="m57.7 56.8v-3.7h11.6v3.7h3.8v7.3h-7.7v-7.3h-3.8v7.3h3.8v3.6h-3.8v3.7h11.5v3.6h-15.4v-3.6h-3.8v-14.6zm15.4 14.6v-3.7h3.8v3.7zm7.8 3.6v-21.9h3.8v3.7h3.9v-3.7h7.7v3.7h3.8v-3.7h7.7v3.7h3.9v18.2h-7.7v-14.6h-3.9v14.6h-7.7v-14.6h-3.8v14.6z"/></svg>
