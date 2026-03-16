@@ -5,8 +5,7 @@ export default {
     extend: {
       fontFamily: {
         mono: ["\"JetBrains Mono\"", "\"Fira Code\"", "Consolas", "Monaco", "\"Courier New\"", "monospace"],
-      },
-      // Note: Animations, keyframes, and shadows are now defined in src/styles/global.css using the @theme block
+      }
     },
   },
   plugins: [require("daisyui")],
