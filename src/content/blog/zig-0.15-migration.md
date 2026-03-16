@@ -19,7 +19,7 @@ we are writing correct and performant code.
 
 # The Big Things
 
-## `std.ArrayList`
+## 1. `std.ArrayList`
 
 ## Logging
 
@@ -31,7 +31,7 @@ that allow for console logging (e.g., `@alert` which triggers the equivalent JS 
 The actual communication tends to be a bit redundant since we have so many log types (`log`, `warn`, `error`, `alert`, etc.) each with their own externed function.
 To eliminate this redundancy, we use the following generic writer:
 
-```
+```zig
 pub fn JsWriter(comptime log_func: *const fn (msg: [*]const u8, len: usize) callconv(.C) void) type {
     return struct {
         const Self = @This();
@@ -60,7 +60,7 @@ pub fn JsWriter(comptime log_func: *const fn (msg: [*]const u8, len: usize) call
 ```
 Necessarily, this is overly complex. We _could_ have just created a concrete `JSWriter` type that accepted a function pointer but it was nice to be able to create concrete types for our specific cases.
 This _did_ mean that we couldn't pass any writer that we wanted across different function signatures but that wasn't/hadn't become necessary at that point. It did create these nice types that we could easily use:
-```
+```zig
 pub const LogWriter = JsWriter(js_log);
 pub const ErrorWriter = JsWriter(js_error);
 pub const AlertWriter = JsWriter(js_alert);

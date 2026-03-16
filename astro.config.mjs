@@ -9,6 +9,12 @@ export default defineConfig({
   site: "https://emjordan.xyz",
   base: "/",
   integrations: [solidJs()],
+  markdown: {
+    shikiConfig: {
+      theme: "dracula",
+      wrap: true
+    }
+  },
   vite: {
     plugins: [lucidePreprocess(), tailwindcss()]
   }
