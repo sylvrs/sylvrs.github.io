@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mono: [""JetBrains Mono"", ""Fira Code"", "Consolas", "Monaco", ""Courier New"", "monospace"],
+        mono: ["\"JetBrains Mono\"", "\"Fira Code\"", "Consolas", "Monaco", "\"Courier New\"", "monospace"],
       },
       animation: {
         "blink": "blink 1s step-end infinite",
