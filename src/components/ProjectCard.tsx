@@ -35,7 +35,6 @@ export default function ProjectCard(props: ProjectCardProps) {
 
   return (
     <div>
-      {/* Filter Buttons */}
       <div class="flex flex-wrap gap-3 mb-12 justify-center">
         <For each={categories()}>
           {(category) => (
@@ -55,7 +54,6 @@ export default function ProjectCard(props: ProjectCardProps) {
         </For>
       </div>
 
-      {/* Projects Grid */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <For each={filteredProjects()}>
           {(project, index) => (
@@ -76,7 +74,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                 "opacity": "0"
               }}
             >
-              {/* Featured Badge */}
               {project.featured && (
                 <div class="absolute top-4 right-4 z-20">
                   <span class="px-3 py-1 bg-gradient-to-r from-accent to-secondary text-base-300 text-xs font-bold rounded-full shadow-lg shadow-accent/50">
@@ -85,7 +82,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                 </div>
               )}
 
-              {/* Category and Year */}
               <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
                 {project.category && (
                   <span class="px-3 py-1 bg-accent/10 border border-accent text-accent text-xs font-semibold rounded-full backdrop-blur-sm">
@@ -99,7 +95,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                 )}
               </div>
 
-              {/* Gradient Overlay on Hover */}
               <div 
                 class={`
                   absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 
@@ -118,7 +113,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                   {project.description}
                 </p>
                 
-                {/* Tags */}
                 <div class="flex flex-wrap gap-2 mb-6">
                   <For each={project.tags.slice(0, 4)}>
                     {(tag) => (
@@ -134,7 +128,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                   )}
                 </div>
                 
-                {/* Action Buttons */}
                 <div class="flex gap-3 mt-auto">
                   {project.github && (
                     <a 
@@ -172,7 +165,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                 </div>
               </div>
 
-              {/* Bottom Accent Line */}
               <div 
                 class={`
                   absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary

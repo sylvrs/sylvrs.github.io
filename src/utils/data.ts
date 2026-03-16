@@ -1,7 +1,6 @@
 import { getCollection } from "astro:content";
 
-export function calculateReadTime(content: string): string {
-  const wordsPerMinute = 200;
+export function calculateReadTime(content: string, wordsPerMinute: number = 200): string {
   const words = content.trim().split(/\s+/).length;
   const minutes = Math.ceil(words / wordsPerMinute);
   return `${minutes} min read`;

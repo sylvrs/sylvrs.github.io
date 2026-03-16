@@ -1,40 +1,76 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --color-brand-bg: oklch(18% 0.04 240);
+  --color-brand-bg-dark: oklch(15% 0.03 240);
+  --color-brand-bg-light: oklch(21% 0.04 240);
+  --color-brand-text: oklch(88% 0.05 250);
+  
+  --color-brand-primary: oklch(72% 0.25 250);
+  --color-brand-secondary: oklch(78% 0.25 300);
+  --color-brand-accent: oklch(82% 0.25 200);
+  
+  --color-brand-success: oklch(78% 0.20 140);
+  --color-brand-warning: oklch(78% 0.18 80);
+  --color-brand-error: oklch(78% 0.22 20);
+
+  --color-terminal-bg: var(--color-brand-bg);
+  --color-terminal-fg: var(--color-brand-text);
+  --color-terminal-blue: var(--color-brand-primary);
+  --color-terminal-cyan: var(--color-brand-accent);
+  --color-terminal-magenta: var(--color-brand-secondary);
+  --color-terminal-yellow: var(--color-brand-warning);
+  --color-terminal-green: var(--color-brand-success);
+  --color-terminal-red: var(--color-brand-error);
+  --color-terminal-amber: var(--color-brand-warning);
+  --color-terminal-fg-dark: oklch(56% 0.04 240);
+  --color-terminal-border: oklch(var(--bc) / 0.2);
+  
+  --color-retro-dark: var(--color-brand-bg-dark);
+  
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  --animate-scan: scan 15s linear infinite;
+}
+
 @plugin "daisyui/theme" {
-  name: "tokyonight";
+  name: "portfolio";
   default: true;
   prefersdark: true;
   color-scheme: dark;
 
-  --color-base-100: oklch(18% 0.04 240);
-  --color-base-200: oklch(15% 0.03 240);
-  --color-base-300: oklch(21% 0.04 240);
-  --color-base-content: oklch(88% 0.05 250);
+  --color-base-100: var(--color-brand-bg);
+  --color-base-200: var(--color-brand-bg-dark);
+  --color-base-300: var(--color-brand-bg-light);
+  --color-base-content: var(--color-brand-text);
 
-  --color-primary: oklch(72% 0.25 250);
-  --color-primary-content: oklch(18% 0.04 240);
+  --color-primary: var(--color-brand-primary);
+  --color-primary-content: var(--color-brand-bg);
 
-  --color-secondary: oklch(78% 0.25 300);
-  --color-secondary-content: oklch(18% 0.04 240);
+  --color-secondary: var(--color-brand-secondary);
+  --color-secondary-content: var(--color-brand-bg);
 
-  --color-accent: oklch(82% 0.25 200);
-  --color-accent-content: oklch(18% 0.04 240);
+  --color-accent: var(--color-brand-accent);
+  --color-accent-content: var(--color-brand-bg);
 
   --color-neutral: oklch(23% 0.04 240);
   --color-neutral-content: oklch(88% 0.05 250);
 
-  --color-info: oklch(82% 0.18 200);
-  --color-info-content: oklch(18% 0.04 240);
+  --color-info: var(--color-brand-accent);
+  --color-info-content: var(--color-brand-bg);
 
-  --color-success: oklch(78% 0.20 140);
-  --color-success-content: oklch(18% 0.04 240);
+  --color-success: var(--color-brand-success);
+  --color-success-content: var(--color-brand-bg);
 
-  --color-warning: oklch(78% 0.18 80);
-  --color-warning-content: oklch(18% 0.04 240);
+  --color-warning: var(--color-brand-warning);
+  --color-warning-content: var(--color-brand-bg);
 
-  --color-error: oklch(78% 0.22 20);
-  --color-error-content: oklch(18% 0.04 240);
+  --color-error: var(--color-brand-error);
+  --color-error-content: var(--color-brand-bg);
 
   --radius-selector: 0.75rem;
   --radius-field: 0.75rem;
@@ -102,10 +138,6 @@
     background-clip: text;
   }
 
-  .glow-border {
-    border: 2px solid oklch(var(--p) / 0.3);
-  }
-
   @keyframes slideUp {
     from {
       opacity: 0;
@@ -117,3 +149,11 @@
     }
   }
 }
+
+@custom-variant prose-inline-code {
+  &.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *)) {
+    @slot;
+  }
+}
+
+

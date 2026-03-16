@@ -1,12 +1,23 @@
 import { createSignal, For } from "solid-js";
-import type { BlogPost } from "../data/blog";
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  tags: string[];
+  category: string;
+  featured: boolean;
+}
 
 interface BlogCardProps {
   posts: BlogPost[];
 }
 
 export default function BlogCard(props: BlogCardProps) {
-  const [hoveredId, setHoveredId] = createSignal<number | null>(null);
+  const [hoveredId, setHoveredId] = createSignal<string | null>(null);
   const [selectedFilter, setSelectedFilter] = createSignal<string>("all");
 
   const categories = () => {
@@ -31,7 +42,6 @@ export default function BlogCard(props: BlogCardProps) {
 
   return (
     <div>
-      {/* Filter Buttons */}
       <div class="flex flex-wrap gap-3 mb-12 justify-center">
         <For each={categories()}>
           {(category) => (
@@ -51,7 +61,6 @@ export default function BlogCard(props: BlogCardProps) {
         </For>
       </div>
 
-      {/* Blog Posts Grid */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <For each={filteredPosts()}>
           {(post, index) => (
@@ -73,7 +82,6 @@ export default function BlogCard(props: BlogCardProps) {
                 "opacity": "0"
               }}
             >
-              {/* Featured Badge */}
               {post.featured && (
                 <div class="absolute top-4 right-4 z-20">
                   <span class="px-3 py-1 bg-gradient-to-r from-accent to-secondary text-base-300 text-xs font-bold rounded-full shadow-lg shadow-accent/50">
@@ -82,14 +90,12 @@ export default function BlogCard(props: BlogCardProps) {
                 </div>
               )}
 
-              {/* Category */}
               <div class="absolute top-4 left-4 z-20">
                 <span class="px-3 py-1 bg-accent/10 border border-accent text-accent text-xs font-semibold rounded-full backdrop-blur-sm">
                   {post.category}
                 </span>
               </div>
 
-              {/* Gradient Overlay on Hover */}
               <div 
                 class={`
                   absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 
@@ -99,7 +105,6 @@ export default function BlogCard(props: BlogCardProps) {
               />
 
               <div class="relative p-8 pt-16 z-10 flex flex-col h-full">
-                {/* Date and Read Time */}
                 <div class="flex items-center gap-3 mb-4 text-xs text-base-content/70">
                   <span class="flex items-center gap-1">
                     {formatDate(post.date)}
@@ -122,7 +127,6 @@ export default function BlogCard(props: BlogCardProps) {
                   {post.excerpt}
                 </p>
                 
-                {/* Tags */}
                 <div class="flex flex-wrap gap-2 mb-6">
                   <For each={post.tags.slice(0, 4)}>
                     {(tag) => (
@@ -139,7 +143,6 @@ export default function BlogCard(props: BlogCardProps) {
                 </div>                
               </div>
 
-              {/* Bottom Accent Line */}
               <div 
                 class={`
                   absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary

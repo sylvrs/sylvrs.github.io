@@ -4,16 +4,9 @@ export interface Config {
   name: string;
   role: string;
   email: string;
-  location: string;
-  availability: string;
-  
-  bio: {
-    greeting: string;
-    loading: string[];
-    status: string;
-    specialties: string[];
-  };
-  
+  location: string; 
+  bio: string; 
+
   social: {
     github?: string;
     linkedin?: string;
