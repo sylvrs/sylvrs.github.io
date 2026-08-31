@@ -20,5 +20,11 @@
   },
   "devDependencies": {
     "vite-plugin-lucide-preprocess": "^1.5.4"
-  }
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=11.0.0 <12.0.0",
+      "onFail": "download"
+    }
 }
