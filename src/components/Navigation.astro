@@ -56,15 +56,6 @@ const currentPath = Astro.url.pathname;
       </a>
       )}
 
-      
-      <a 
-        href="/resume.pdf"
-        class="hidden md:flex px-5 py-2 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium text-sm items-center gap-2"
-      >
-        <Download size={14} />
-        <span>RESUME</span>
-      </a>
-
       <button 
         id="mobile-menu-btn"
         class="md:hidden text-base-content hover:text-primary transition-colors p-2 ml-auto"
@@ -96,13 +87,6 @@ const currentPath = Astro.url.pathname;
             </a>
           );
         })}
-        <a 
-          href="/resume.pdf"
-          class="flex items-center justify-center gap-2 px-4 py-3 bg-accent/10 border border-accent/50 text-accent rounded-lg hover:bg-accent hover:text-base-300 transition-all font-medium"
-        >
-          <Download size={16} />
-          <span>RESUME</span>
-        </a>
         {config.social.github && (
         <a 
           href=`${config.social.github}`
